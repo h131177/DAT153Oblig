@@ -1,6 +1,9 @@
 package no.hvl.dat153;
 
-public class Person {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Person implements Parcelable {
 
     private String name;
     private String path;
@@ -12,6 +15,23 @@ public class Person {
         this.name = name;
         this.path = path;
     }
+
+    protected Person(Parcel in) {
+        name = in.readString();
+        path = in.readString();
+    }
+
+    public static final Creator<Person> CREATOR = new Creator<Person>() {
+        @Override
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -27,5 +47,16 @@ public class Person {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(path);
     }
 }

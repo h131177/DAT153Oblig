@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity  {
         final Button take_quiz = (Button) findViewById(R.id.take_quiz);
         //lager intent for å vise hvor det skal sendes videre
         Intent quiz = new Intent(this,QuizActivity.class);
+        //Overfører heile listen med personer til quiz aktiviteten
+        quiz.putExtra("liste", personList);
         //setter på onClick og sender videre til neste Activity
         take_quiz.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity  {
 
         final Button add_entry = (Button) findViewById(R.id.add_entry);
         Intent entry = new Intent(this,AddEntryActivity.class);
+        //Overfører heile listen med personer til addEntry aktiviteten
+        entry.putExtra("liste", personList);
         add_entry.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(entry);
