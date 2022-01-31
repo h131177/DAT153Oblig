@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizApp">
         <activity
+            android:name=".AddEntry"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -24,8 +27,6 @@
         <activity
             android:name=".dbActivity"
             android:exported="false" />
-
-
     </application>
 
 </manifest>
