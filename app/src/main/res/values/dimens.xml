@@ -6,4 +6,5 @@
     <dimen name="text_size">15sp</dimen>
     <dimen name="title_size">32sp</dimen>
     <dimen name="score">25sp</dimen>
+    <dimen name="list_item_height">32dp</dimen>
 </resources>
