@@ -16,6 +16,8 @@
     android:weightSum="3">
 
 
+
+
     <LinearLayout
         android:id="@+id/quiz_top_part"
         android:layout_width="match_parent"
@@ -66,5 +68,10 @@
             android:layout_height="wrap_content"
             android:text="@string/button1" />
     </RadioGroup>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </LinearLayout>
