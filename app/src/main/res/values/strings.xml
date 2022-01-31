@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">QuizApp</string>
-    <string name="title"> QuizApp</string>
+    <string name="title">QuizApp</string>
+    <string name="take_quiz">Take the quiz</string>
+    <string name="see_list">See list</string>
+    <string name="add_entry">Add entry</string>
+
 </resources>
