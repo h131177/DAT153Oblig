@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizApp">
         <activity
-            android:name=".AddEntry"
+            android:name=".AddEntryActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
