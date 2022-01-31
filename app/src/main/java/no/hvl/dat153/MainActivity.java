@@ -13,16 +13,25 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity  {
 
+    private ArrayList<Person> personList = new ArrayList<>();
+    Person p1 = new Person("Regine", "TestPath1");
+    Person p2 = new Person("Magnus", "TestPath2");
+    Person p3 = new Person("Kjetil", "TestPath3");
  //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        personList.add(p1);
+        personList.add(p2);
+        personList.add(p3);
 
         //finner knapp med id
         final Button take_quiz = (Button) findViewById(R.id.take_quiz);
