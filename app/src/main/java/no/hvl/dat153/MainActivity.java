@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity  {
 
         final Button see_list = (Button) findViewById(R.id.see_list);
         Intent list = new Intent(this,dbActivity.class);
+        list.putExtra("liste", String.valueOf(personList));
         see_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(list);
