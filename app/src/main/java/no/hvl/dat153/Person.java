@@ -1,5 +1,6 @@
 package no.hvl.dat153;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,13 +9,15 @@ public class Person implements Parcelable {
 
     private String name;
     private int path;
+    private int currentColor;
 
     public Person() {
     }
 
-    public Person(String name, int path) {
+    public Person(String name, int path, int currentColor) {
         this.name = name;
         this.path = path;
+        this.currentColor = currentColor;
     }
 
     protected Person(Parcel in) {
@@ -49,6 +52,10 @@ public class Person implements Parcelable {
     public void setPath(int path) {
         this.path = path;
     }
+
+    public int getCurrentColor() { return currentColor;}
+
+    public void setCurrentColor() { this.currentColor = currentColor;}
 
     @Override
     public int describeContents() {

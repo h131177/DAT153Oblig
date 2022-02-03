@@ -35,12 +35,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void mockList() {
-        person = new LinkedList<>(Arrays.asList(new Person("Obama", R.drawable.obama),
-                new Person("Putin", R.drawable.putin),
-                new Person("Trump", R.drawable.trump),
-                new Person("Trump2", R.drawable.trump),
-                new Person("Trump3", R.drawable.trump),
-                new Person("Trump4", R.drawable.trump)));
+        person = new LinkedList<>(Arrays.asList(new Person("Obama", R.drawable.obama, 200),
+                new Person("Putin", R.drawable.putin, 200),
+                new Person("Trump", R.drawable.trump, 200),
+                new Person("Trump2", R.drawable.trump, 200),
+                new Person("Trump3", R.drawable.trump, 200),
+                new Person("Trump4", R.drawable.trump, 200)));
     }
 
     @Override

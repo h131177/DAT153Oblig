@@ -2,39 +2,36 @@ package no.hvl.dat153;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
+
+
 
 
     public static List<Person> personList = new ArrayList<>();
-    Person p1 = new Person ("Regine", R.drawable.obama);
-    Person p2 = new Person("Magnus", R.drawable.trump);
-    Person p3 = new Person("Kjetil", R.drawable.putin);
-    Person p4 = new Person ("Regine", R.drawable.obama);
-    Person p5 = new Person("Magnus", R.drawable.trump);
-    Person p6 = new Person("Kjetil", R.drawable.putin);
-    Person p7 = new Person ("Regine", R.drawable.obama);
-    Person p8 = new Person("Magnus", R.drawable.trump);
-    Person p9 = new Person("Kjetil", R.drawable.putin);
-    Person p10 = new Person ("Regine", R.drawable.obama);
-    Person p11 = new Person("Magnus", R.drawable.trump);
-    Person p12 = new Person("Kjetil", R.drawable.putin);
+    Person p1 = new Person ("Regine", R.drawable.obama, randomColor());
+    Person p2 = new Person("Magnus", R.drawable.trump, randomColor());
+    Person p3 = new Person("Kjetil", R.drawable.putin, randomColor());
+    Person p4 = new Person ("Regine", R.drawable.obama, randomColor());
+    Person p5 = new Person("Magnus", R.drawable.trump, randomColor());
+    Person p6 = new Person("Kjetil", R.drawable.putin, randomColor());
+    Person p7 = new Person ("Regine", R.drawable.obama, randomColor());
+    Person p8 = new Person("Magnus", R.drawable.trump, randomColor());
+    Person p9 = new Person("Kjetil", R.drawable.putin, randomColor());
+    Person p10 = new Person ("Regine", R.drawable.obama, randomColor());
+    Person p11 = new Person("Magnus", R.drawable.trump, randomColor());
+    Person p12 = new Person("Kjetil", R.drawable.putin, randomColor());
  //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +87,11 @@ public class MainActivity extends AppCompatActivity  {
 
 
     }
-
+    public int randomColor(){
+        Random rnd = new Random();
+        int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        return currentColor;
+    }
 
 
 }

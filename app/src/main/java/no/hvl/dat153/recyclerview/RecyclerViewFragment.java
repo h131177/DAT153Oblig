@@ -17,7 +17,7 @@ import java.util.List;
 import no.hvl.dat153.Person;
 import no.hvl.dat153.R;
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements RecyclerInterface {
 
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
@@ -63,10 +63,12 @@ public class RecyclerViewFragment extends Fragment {
         //setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
         // Set CustomAdapter as the adapter for RecyclerView.
-        mAdapter = new CustomAdapter(localDataSet);
+        mAdapter = new CustomAdapter(localDataSet, this);
 
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
+
+
 
 
         return rootView;
@@ -78,6 +80,12 @@ public class RecyclerViewFragment extends Fragment {
     private void initDataset() {
         localDataSet = personList;
 
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+        personList.remove(position);
+        mAdapter.notifyItemRemoved(position);
     }
 }
 

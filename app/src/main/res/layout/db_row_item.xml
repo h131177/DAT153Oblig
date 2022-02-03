@@ -4,21 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_layoutheight"
-    android:gravity="center_vertical">
-
-    <TextView
-        android:id="@+id/textView2"
-        android:textSize="@dimen/list_item_textsize"
-        android:padding="@dimen/list_item_padding"
-        android:layout_width="@dimen/list_item_width"
+    android:gravity="center_vertical"
+    >
+    <FrameLayout
+        android:id="@+id/frameItem"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Element"></TextView>
+        >
 
-    <ImageView
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
+
+            android:padding="@dimen/list_item_padding"
+            android:text="Element"
+            android:textSize="@dimen/list_item_textsize"></TextView>
+
+        <ImageView
         android:id="@+id/imageView2"
         android:layout_width="@dimen/list_item_imagewidth"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/list_item_width"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        />
+    </FrameLayout>
 
 </FrameLayout>
