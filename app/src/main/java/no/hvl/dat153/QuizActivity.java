@@ -2,6 +2,7 @@ package no.hvl.dat153;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
+
     private String name;
     private String answer;
 
@@ -26,9 +28,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_quiz);
 
         Random rand = new Random();
-        List<Person> person = new LinkedList<>( Arrays.asList(new Person("Obama", "path til bilde"),
-                new Person("Beyonce", "path til bilde"),
-                new Person("Steve Jobs", "path til bilde")));
+        List<Person> person = new LinkedList<>( Arrays.asList(new Person("Obama", R.drawable.obama),
+                new Person("Beyonce", R.drawable.obama),
+                new Person("Steve Jobs", R.drawable.obama)));
         int numberOfElements = person.size()-1;
 
         Button radioButton1 = (Button) findViewById(R.id.radioButton1);

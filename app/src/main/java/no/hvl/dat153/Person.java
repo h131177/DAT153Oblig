@@ -1,24 +1,25 @@
 package no.hvl.dat153;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Person implements Parcelable {
 
     private String name;
-    private String path;
+    private int path;
 
     public Person() {
     }
 
-    public Person(String name, String path) {
+    public Person(String name, int path) {
         this.name = name;
         this.path = path;
     }
 
     protected Person(Parcel in) {
         name = in.readString();
-        path = in.readString();
+        path = Integer.parseInt(in.readString());
     }
 
     public static final Creator<Person> CREATOR = new Creator<Person>() {
@@ -41,11 +42,11 @@ public class Person implements Parcelable {
         this.name = name;
     }
 
-    public String getPath() {
+    public int getPath() {
         return path;
     }
 
-    public void setPath(String path) {
+    public void setPath(int path) {
         this.path = path;
     }
 
@@ -57,6 +58,6 @@ public class Person implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
-        parcel.writeString(path);
+        parcel.writeString(String.valueOf(path));
     }
 }
