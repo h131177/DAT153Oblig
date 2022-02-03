@@ -13,5 +13,5 @@
     <string name="button3">button3</string>
     <string name="score">Score:</string>
     <string name="submit">Submit</string>
-
+    <string name="result">Submit</string>
 </resources>
