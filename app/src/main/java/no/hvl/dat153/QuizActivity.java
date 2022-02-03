@@ -22,6 +22,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private String answer;
     private int score;
     private int total;
+    private RadioButton radioButton;
 
 
     @Override
@@ -62,30 +63,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             person.remove(randomIndex);
         }
 
-//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-//                if (checkedId != -1) {
-//                    RadioButton rb = (RadioButton) findViewById(checkedId);
-//                    if (rb != null) {
-//                        total++;
-//                        String display = "";
-//                        answer = (String) rb.getText();
-//                        if(answer.equals(name)){
-//                            display = answer + " is correct answer";
-//                            score++;
-//                        } else{
-//                            display = answer + " is wrong answer";
-//                        }
-//                        Toast.makeText(QuizActivity.this, display, Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    Toast.makeText(QuizActivity.this, "choose one", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        });
-
 
     }
 
@@ -93,15 +70,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                if (checkedId != -1) {
-                    RadioButton rb = (RadioButton) findViewById(checkedId);
-                    if (rb != null) {
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+                if (selectedId != -1) {
+                    radioButton = (RadioButton) findViewById(selectedId);
+                    if (radioButton != null) {
                         total++;
                         String display = "";
-                        answer = (String) rb.getText();
+                        answer = (String) radioButton.getText();
                         if (answer.equals(name)) {
                             display = answer + " is correct answer";
                             score++;
@@ -113,10 +88,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     Toast.makeText(QuizActivity.this, "choose one", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-
     }
 }
 
