@@ -85,7 +85,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //Get elements from you dataset at this position and replace the
         //the contents of the view with that element
         holder.textView.setText(personList.get(position).getName());
-        holder.imageView.setImageResource(personList.get(position).getPath());
+        holder.imageView.setImageURI(personList.get(position).getPath());
         holder.buttonView.setBackgroundColor(personList.get(position).getCurrentColor());
     }
 

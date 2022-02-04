@@ -2,19 +2,20 @@ package no.hvl.dat153;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Person implements Parcelable {
 
     private String name;
-    private int path;
+    private Uri path;
     private int currentColor;
 
     public Person() {
     }
 
-    public Person(String name, int path, int currentColor) {
+    public Person(String name, Uri path, int currentColor) {
         this.name = name;
         this.path = path;
         this.currentColor = currentColor;
@@ -22,7 +23,7 @@ public class Person implements Parcelable {
 
     protected Person(Parcel in) {
         name = in.readString();
-        path = Integer.parseInt(in.readString());
+        path = Uri.parse(in.readString());
     }
 
     public static final Creator<Person> CREATOR = new Creator<Person>() {
@@ -45,11 +46,11 @@ public class Person implements Parcelable {
         this.name = name;
     }
 
-    public int getPath() {
+    public Uri getPath() {
         return path;
     }
 
-    public void setPath(int path) {
+    public void setPath(Uri path) {
         this.path = path;
     }
 

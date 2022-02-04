@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,21 +18,23 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
 
-
+    Uri ObamaB = Uri.parse("android.resource://no.hvl.dat153/drawable/obama");
+    Uri PutinB = Uri.parse("android.resource://no.hvl.dat153/drawable/putin");
+    Uri TrumpB = Uri.parse("android.resource://no.hvl.dat153/drawable/trump");
 
     public static List<Person> personList = new ArrayList<>();
-    Person p1 = new Person ("Regine", R.drawable.obama, randomColor());
-    Person p2 = new Person("Magnus", R.drawable.trump, randomColor());
-    Person p3 = new Person("Kjetil", R.drawable.putin, randomColor());
-    Person p4 = new Person ("Regine", R.drawable.obama, randomColor());
-    Person p5 = new Person("Magnus", R.drawable.trump, randomColor());
-    Person p6 = new Person("Kjetil", R.drawable.putin, randomColor());
-    Person p7 = new Person ("Regine", R.drawable.obama, randomColor());
-    Person p8 = new Person("Magnus", R.drawable.trump, randomColor());
-    Person p9 = new Person("Kjetil", R.drawable.putin, randomColor());
-    Person p10 = new Person ("Regine", R.drawable.obama, randomColor());
-    Person p11 = new Person("Magnus", R.drawable.trump, randomColor());
-    Person p12 = new Person("Kjetil", R.drawable.putin, randomColor());
+    Person p1 = new Person ("Regine", ObamaB, randomColor());
+    Person p2 = new Person("Magnus", TrumpB, randomColor());
+    Person p3 = new Person("Kjetil", PutinB, randomColor());
+    Person p4 = new Person ("Regine", ObamaB, randomColor());
+    Person p5 = new Person("Magnus", TrumpB, randomColor());
+    Person p6 = new Person("Kjetil", PutinB, randomColor());
+    Person p7 = new Person ("Regine", ObamaB, randomColor());
+    Person p8 = new Person("Magnus", TrumpB, randomColor());
+    Person p9 = new Person("Kjetil", PutinB, randomColor());
+    Person p10 = new Person ("Regine", ObamaB, randomColor());
+    Person p11 = new Person("Magnus", TrumpB, randomColor());
+    Person p12 = new Person("Kjetil", PutinB, randomColor());
  //
     @Override
     protected void onCreate(Bundle savedInstanceState) {

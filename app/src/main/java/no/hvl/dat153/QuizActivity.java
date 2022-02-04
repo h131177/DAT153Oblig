@@ -35,12 +35,17 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void mockList() {
-        person = new LinkedList<>(Arrays.asList(new Person("Obama", R.drawable.obama, 200),
-                new Person("Putin", R.drawable.putin, 200),
-                new Person("Trump", R.drawable.trump, 200),
-                new Person("Trump2", R.drawable.trump, 200),
-                new Person("Trump3", R.drawable.trump, 200),
-                new Person("Trump4", R.drawable.trump, 200)));
+
+        Uri ObamaB = Uri.parse("android.resource://no.hvl.dat153/drawable/obama");
+        Uri PutinB = Uri.parse("android.resource://no.hvl.dat153/drawable/putin");
+        Uri TrumpB = Uri.parse("android.resource://no.hvl.dat153/drawable/trump");
+
+        person = new LinkedList<>(Arrays.asList(new Person("Obama", ObamaB, 200),
+                new Person("Putin", PutinB, 200),
+                new Person("Trump", TrumpB, 200),
+                new Person("Trump2", TrumpB, 200),
+                new Person("Trump3", TrumpB, 200),
+                new Person("Trump4", TrumpB, 200)));
     }
 
     @Override
@@ -93,7 +98,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         //setter bildet
         ImageView imageView = findViewById(R.id.profile_picture);
-        imageView.setImageResource(person.get(randomIndex).getPath());
+        imageView.setImageURI(person.get(randomIndex).getPath());
 
         //tar vekk person fra listen etter den har blitt vist for å ikke repetere person
         person.remove(randomIndex);
