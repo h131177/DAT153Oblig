@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class AddEntryActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_OPEN = 1;
     private List<Person> personList;
+    private ImageView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class AddEntryActivity extends AppCompatActivity {
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
         Button btnAdd = findViewById(R.id.addButton);
+        iv = findViewById(R.id.imagePreview);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){
@@ -49,7 +52,7 @@ public class AddEntryActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_OPEN && resultCode == RESULT_OK) {
             Uri fullPhotoUri = data.getData();
             // Do work with full size photo saved at fullPhotoUri
-
+            iv.setImageURI(fullPhotoUri);
         }
     }
 }
