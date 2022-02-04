@@ -87,5 +87,9 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
         personList.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
+
+    public void refresh(){
+        mAdapter.notifyDataSetChanged();
+    }
 }
 
