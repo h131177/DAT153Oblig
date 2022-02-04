@@ -26,6 +26,8 @@ public class dbActivity extends AppCompatActivity{
         setContentView(R.layout.activity_db);
 
 
+
+
         Button sortAlpha = findViewById(R.id.sortButton);
         sortAlpha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +40,6 @@ public class dbActivity extends AppCompatActivity{
 
 
                 });
-
             }
         });
         Button sortRevAlpha = findViewById(R.id.sortButton2);
@@ -51,12 +52,12 @@ public class dbActivity extends AppCompatActivity{
                             return (person.getName().compareTo(t1.getName()));
                         }
 
-
-
                     });
                     Collections.reverse(personList);
                 }
             });
+
+
 
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

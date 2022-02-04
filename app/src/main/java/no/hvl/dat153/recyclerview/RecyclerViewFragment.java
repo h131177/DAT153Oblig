@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import no.hvl.dat153.Person;
@@ -88,8 +90,21 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
         mAdapter.notifyItemRemoved(position);
     }
 
+    public void onClickSort() {
+        Collections.sort(personList, new Comparator<Person>() {
+            @Override
+            public int compare(Person person, Person t1) {
+                return (person.getName().compareTo(t1.getName()));
+            }
+
+
+        });
+        //refresh();
+    }
+
     public void refresh(){
         mAdapter.notifyDataSetChanged();
     }
+
 }
 

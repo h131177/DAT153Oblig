@@ -1,5 +1,7 @@
 package no.hvl.dat153.recyclerview;
 
+import static no.hvl.dat153.MainActivity.personList;
+
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import no.hvl.dat153.Person;
@@ -43,7 +47,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         TextView textView;
         ImageView imageView;
         FrameLayout buttonView;
-
+        Button sortView;
 
         public ViewHolder(@NonNull View itemView, RecyclerInterface recyclerInterface) {
             super(itemView);
@@ -51,6 +55,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             textView = itemView.findViewById(R.id.textView2);
             imageView = itemView.findViewById(R.id.imageView2);
             buttonView = itemView.findViewById(R.id.frameItem);
+            /*sortView = itemView.findViewById(R.id.sortButton);
+                sortView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        recyclerInterface.onClickSort();
+                    }
+                });*/
             buttonView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -101,6 +112,23 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         adapter.notifyItemRemoved(position);
 
     }
+   /* @Override
+    public void onClickSort() {
+        Collections.sort(personList, new Comparator<Person>() {
+            @Override
+            public int compare(Person person, Person t1) {
+                return (person.getName().compareTo(t1.getName()));
+            }
+
+
+        });
+        refresh();
+    }
+
+    public void refresh(){
+        adapter.notifyDataSetChanged();
+    }
+*/
 
 
 }
