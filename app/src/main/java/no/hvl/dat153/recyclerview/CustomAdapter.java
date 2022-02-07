@@ -36,6 +36,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public CustomAdapter(List<Person> personList, RecyclerInterface recyclerInterface){
         this.personList = personList;
         this.recyclerInterface = recyclerInterface;
+        System.out.println("adapter constructor");
+
     }
 
     /**
@@ -61,6 +63,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         recyclerInterface.onClickSort();
                     }
                 });*/
+            System.out.println("adapter viewholder");
             buttonView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -84,6 +87,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //Create new view, which defines the UI of the list item
        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
        View view = inflater.inflate(R.layout.db_row_item, viewGroup, false);
+        System.out.println("adapter oncreate");
 
         return new ViewHolder(view, recyclerInterface);
     }
@@ -91,6 +95,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     //Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position){
+        System.out.println("adapter onbind");
 
         //Get elements from you dataset at this position and replace the
         //the contents of the view with that element
@@ -107,15 +112,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onItemLongClick(int position) {
+        System.out.println("adapter remove");
         personList.remove(position);
         adapter.notifyItemRemoved(position);
 
     }
     @Override
     public void onClickSort() {
+
         Collections.sort(personList, new Comparator<Person>() {
             @Override
             public int compare(Person person, Person t1) {
+                System.out.println("adapter clicksort");
                 return (person.getName().compareTo(t1.getName()));
             }
 

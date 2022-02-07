@@ -19,8 +19,8 @@ public class AddEntryActivity extends AppCompatActivity {
     private ImageView iv;
     private EditText nameInput;
     private Uri fullPhotoUri;
-    private PersonDao dao = new PersonDao();
-    private List<Person> personList = dao.getAllPersons();
+    private PersonDao dao;
+    private List<Person> personList;
 
 
     @Override
@@ -28,17 +28,13 @@ public class AddEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        dao = new PersonDao();
+        personList = dao.getAllPersons();
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
         Button btnAdd = findViewById(R.id.addButton);
         iv = findViewById(R.id.imagePreview);
         nameInput = findViewById(R.id.editTextName);
-
-//        Bundle extras = getIntent().getExtras();
-//        if (extras != null){
-//            personList = MainActivity.personList;
-//            //personList = extras.getParcelableArrayList("liste");
-//        }
 
         btnChoose.setOnClickListener((View v) -> {
             selectImage();

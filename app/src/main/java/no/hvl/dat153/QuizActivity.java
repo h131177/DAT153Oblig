@@ -32,8 +32,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private String name;
     private int score;
     private int total;
-    private List<Person> person;
     private List<String> names;
+    private List<Person> person;
     private PersonDao dao = new PersonDao();
 
 

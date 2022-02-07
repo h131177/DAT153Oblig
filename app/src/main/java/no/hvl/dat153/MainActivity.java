@@ -16,15 +16,21 @@ import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
+    private List<Person> personList;
+    private PersonDao dao = new PersonDao();
 
 
  //
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        personList = dao.getAllPersons();
 
 
         //finner knapp med id
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button see_list = (Button) findViewById(R.id.see_list);
         Intent list = new Intent(this,dbActivity.class);
+        list.putExtra("liste", String.valueOf(personList));
         see_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(list);
@@ -53,15 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(entry);
             }
         });
-
-
-
     }
-    public int randomColor(){
-        Random rnd = new Random();
-        int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        return currentColor;
-    }
+
 
 
 }

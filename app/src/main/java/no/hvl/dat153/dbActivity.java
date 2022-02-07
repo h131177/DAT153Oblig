@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import no.hvl.dat153.recyclerview.CustomAdapter;
@@ -18,19 +20,19 @@ import no.hvl.dat153.recyclerview.RecyclerViewFragment;
 
 public class dbActivity extends AppCompatActivity{
 
-    private PersonDao dao = new PersonDao();
-    private List<Person> personList = dao.getAllPersons();
+    private PersonDao dao;
+    private List<Person> personList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        dao = new PersonDao();
+        personList = dao.getAllPersons();
 
         final Button add_entry = (Button) findViewById(R.id.add_entry);
         Intent entry = new Intent(this,AddEntryActivity.class);
-        //Overfører heile listen med personer til addEntry aktiviteten
-        entry.putExtra("liste", String.valueOf(personList));
         add_entry.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(entry);
@@ -45,13 +47,14 @@ public class dbActivity extends AppCompatActivity{
                 Collections.sort(personList, new Comparator<Person>() {
                     @Override
                     public int compare(Person person, Person t1) {
+                        System.out.println("sort button 1 ");
                         return (person.getName().compareTo(t1.getName()));
                     }
-
-
                 });
+                //fragment();
             }
         });
+
         final Button sortRevAlpha = findViewById(R.id.sortButton2);
             sortRevAlpha.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,22 +62,33 @@ public class dbActivity extends AppCompatActivity{
                     Collections.sort(personList, new Comparator<Person>() {
                         @Override
                         public int compare(Person person, Person t1) {
+                            System.out.println("sort button 2");
                             return (person.getName().compareTo(t1.getName()));
                         }
-
                     });
                     Collections.reverse(personList);
+                    fragment(savedInstanceState);
+
                 }
             });
 
-
-
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            RecyclerViewFragment fragment = new RecyclerViewFragment();
-            transaction.replace(R.id.fragmentContainerView, fragment);
-            transaction.commit();
-        }
+        fragment(savedInstanceState);
     }
+
+    private void fragment(Bundle savedInstanceState){
+        Intent db = new Intent(this,RecyclerViewFragment.class);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        RecyclerViewFragment fragment = new RecyclerViewFragment();
+        transaction.replace(R.id.fragmentContainerView, fragment);
+        Bundle bundle = new Bundle();
+        List<Person> pl = new ArrayList<Person>();
+        Iterator<Person> i = personList.iterator();
+
+       // bundle.putSerializable("personList", personList);
+        transaction.commit();
+
+    }
+
 
 }

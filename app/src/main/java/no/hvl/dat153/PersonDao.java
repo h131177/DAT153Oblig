@@ -24,6 +24,7 @@ public class PersonDao implements Dao{
     Uri MerkelB = Uri.parse("android.resource://no.hvl.dat153/drawable/merkel");
     Uri HarrisB = Uri.parse("android.resource://no.hvl.dat153/drawable/harris");
 
+    //mockdatabase
     List<Person> peoples = new LinkedList<>(Arrays.asList(
             new Person("Barack Obama", ObamaB),
             new Person("Vladimir Putin", PutinB),
@@ -41,6 +42,7 @@ public class PersonDao implements Dao{
     public PersonDao() {
 
     }
+
 
     public List<String> getNames(){
         Iterator<Person> it = peoples.iterator();
