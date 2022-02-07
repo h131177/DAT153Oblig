@@ -30,7 +30,7 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     protected List<Person> localDataSet;
 
     private PersonDao dao = new PersonDao();
-    private List<Person> personList;
+    private List<Person> personList = dao.getAllPersons();
 
     /**
      * called to do initial creation of the fragment
