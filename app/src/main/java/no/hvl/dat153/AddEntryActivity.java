@@ -21,7 +21,7 @@ public class AddEntryActivity extends AppCompatActivity {
     private ImageView iv;
     private EditText nameInput;
     private Uri fullPhotoUri;
-    private PersonDao dao;
+    //private PersonDao dao;
     private List<Person> personList;
 
 
@@ -30,8 +30,8 @@ public class AddEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        dao = new PersonDao();
-        personList = dao.getAllPersons();
+        //dao = new PersonDao();
+        personList = PersonDao.getInstance().peoples;
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
         Button btnAdd = findViewById(R.id.addButton);
@@ -47,7 +47,7 @@ public class AddEntryActivity extends AppCompatActivity {
             //TODO Fix CurrentColor
             Person p = new Person(name, fullPhotoUri);
             System.out.println(p);
-            dao.insert(p);
+            PersonDao.getInstance().insert(p);
         });
     }
 

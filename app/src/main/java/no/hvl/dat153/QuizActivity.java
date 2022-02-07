@@ -34,7 +34,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private int total;
     private List<String> names;
     private List<Person> person;
-    private PersonDao dao = new PersonDao();
+    //private PersonDao dao = new PersonDao();
 
 
 
@@ -44,8 +44,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_quiz);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        person = dao.getAllPersons();
-        names = dao.getNames();
+        person = PersonDao.getInstance().getAllPersons();
+        names = PersonDao.getInstance().getNames();
         setScreen();
 //        final Button quiz_back = findViewById(R.id.quiz_back);
 //        quiz_back.setOnClickListener(new View.OnClickListener() {
