@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private List<Person> personList;
-    private PersonDao dao = new PersonDao();
+    //private PersonDao dao = new PersonDao();
 
 
  //
@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        personList = dao.getAllPersons();
-
+        //personList = dao.getAllPersons();
+        personList = PersonDao.getInstance().peoples;
 
         //finner knapp med id
         final Button take_quiz = (Button) findViewById(R.id.take_quiz);

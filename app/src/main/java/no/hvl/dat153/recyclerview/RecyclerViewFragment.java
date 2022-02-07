@@ -29,8 +29,8 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     protected RecyclerView.LayoutManager mLayoutManager;
     protected List<Person> localDataSet;
 
-    private PersonDao dao = new PersonDao();
-    private List<Person> personList = dao.getAllPersons();
+    //private PersonDao dao = new PersonDao();
+    private List<Person> personList = PersonDao.getInstance().getAllPersons();
 
     /**
      * called to do initial creation of the fragment

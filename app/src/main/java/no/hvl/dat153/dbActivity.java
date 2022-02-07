@@ -20,7 +20,7 @@ import no.hvl.dat153.recyclerview.RecyclerViewFragment;
 
 public class dbActivity extends AppCompatActivity{
 
-    private PersonDao dao;
+    //private PersonDao dao;
     private List<Person> personList;
 
     @Override
@@ -28,8 +28,9 @@ public class dbActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        dao = new PersonDao();
-        personList = dao.getAllPersons();
+        //dao = new PersonDao();
+        //personList = dao.getAllPersons();
+        personList = PersonDao.getInstance().peoples;
 
         final Button add_entry = (Button) findViewById(R.id.add_entry);
         Intent entry = new Intent(this,AddEntryActivity.class);
