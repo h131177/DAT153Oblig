@@ -1,14 +1,39 @@
 package no.hvl.dat153;
 
+import android.graphics.Color;
+import android.net.Uri;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class PersonDao implements Dao{
 
-    List<Person> peoples;
+    Uri ObamaB = Uri.parse("android.resource://no.hvl.dat153/drawable/obama");
+    Uri PutinB = Uri.parse("android.resource://no.hvl.dat153/drawable/putin");
+    Uri TrumpB = Uri.parse("android.resource://no.hvl.dat153/drawable/trump");
+
+    List<Person> peoples = new LinkedList<>(Arrays.asList(
+            new Person("Obama", ObamaB),
+            new Person("Putin", PutinB),
+            new Person("Trump", TrumpB),
+            new Person("Trump2", TrumpB),
+            new Person("Trump3", TrumpB)));
+    List<String> names = new ArrayList<>();
 
     public PersonDao() {
-        peoples = new ArrayList<Person>();
+
+    }
+
+    public List<String> getNames(){
+        Iterator<Person> it = peoples.iterator();
+        while(it.hasNext()){
+            names.add(it.next().getName());
+        }
+        return names;
     }
 
     @Override
@@ -30,4 +55,6 @@ public class PersonDao implements Dao{
     public void delete(Person p) {
         peoples.remove(p);
     }
+
+
 }

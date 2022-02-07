@@ -18,7 +18,8 @@ import no.hvl.dat153.recyclerview.RecyclerViewFragment;
 
 public class dbActivity extends AppCompatActivity{
 
-    List<Person> personList = MainActivity.personList;
+    private PersonDao dao = new PersonDao();
+    private List<Person> personList = dao.getAllPersons();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

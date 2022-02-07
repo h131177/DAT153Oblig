@@ -15,10 +15,13 @@ import java.util.List;
 public class AddEntryActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_OPEN = 1;
-    private List<Person> personList;
+
     private ImageView iv;
     private EditText nameInput;
     private Uri fullPhotoUri;
+    private PersonDao dao = new PersonDao();
+    private List<Person> personList = dao.getAllPersons();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +33,11 @@ public class AddEntryActivity extends AppCompatActivity {
         iv = findViewById(R.id.imagePreview);
         nameInput = findViewById(R.id.editTextName);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null){
-            personList = MainActivity.personList;
-            //personList = extras.getParcelableArrayList("liste");
-        }
+//        Bundle extras = getIntent().getExtras();
+//        if (extras != null){
+//            personList = MainActivity.personList;
+//            //personList = extras.getParcelableArrayList("liste");
+//        }
 
         btnChoose.setOnClickListener((View v) -> {
             selectImage();
@@ -43,8 +46,8 @@ public class AddEntryActivity extends AppCompatActivity {
         btnAdd.setOnClickListener((View v) -> {
             String name = nameInput.getText().toString();
             //TODO Fix CurrentColor
-            Person p = new Person(name, fullPhotoUri, 1);
-            personList.add(p);
+            Person p = new Person(name, fullPhotoUri);
+            dao.insert(p);
         });
     }
 
@@ -62,6 +65,7 @@ public class AddEntryActivity extends AppCompatActivity {
             fullPhotoUri = data.getData();
             // Do work with full size photo saved at fullPhotoUri
             iv.setImageURI(fullPhotoUri);
+
             getContentResolver().takePersistableUriPermission(fullPhotoUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
     }

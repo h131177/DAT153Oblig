@@ -1,6 +1,6 @@
 package no.hvl.dat153.recyclerview;
 
-import static no.hvl.dat153.MainActivity.personList;
+
 
 import android.view.LayoutInflater;
 import android.view.View;

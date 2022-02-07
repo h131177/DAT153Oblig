@@ -16,9 +16,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,38 +35,26 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private int score;
     private int total;
     private RadioButton radioButton;
-
-
     private List<Person> person;
+    private List<String> names;
+    private PersonDao dao = new PersonDao();
 
 
-    private void mockList() {
-
-        Uri ObamaB = Uri.parse("android.resource://no.hvl.dat153/drawable/obama");
-        Uri PutinB = Uri.parse("android.resource://no.hvl.dat153/drawable/putin");
-        Uri TrumpB = Uri.parse("android.resource://no.hvl.dat153/drawable/trump");
-
-        person = new LinkedList<>(Arrays.asList(new Person("Obama", ObamaB, 200),
-                new Person("Putin", PutinB, 200),
-                new Person("Trump", TrumpB, 200),
-                new Person("Trump2", TrumpB, 200),
-                new Person("Trump3", TrumpB, 200),
-                new Person("Trump4", TrumpB, 200)));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        mockList();
+        person = dao.getAllPersons();
+        names = dao.getNames();
         setScreen();
     }
 
     private void setScreen() {
         Random rand = new Random();
 
-        //sender videre til ResultActivity hvis alle navnene er vist
+        //sender videre til ResultActivity hvis alle navnene er vist, kunne ha brukt fragment her
         if (person.size() == 0) {
             Intent result = new Intent(this, ResultActivity.class);
             result.putExtra("score", String.valueOf(score));
@@ -68,33 +62,44 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(result);
         }
 
-        //indekser for valgt person og to andre navn, tester litt med de andre for å se hvordan random oppfører seg
-        int randomIndex = rand.nextInt(person.size());
-        int r2 = rand.nextInt(person.size());
-        int r3 = rand.nextInt(person.size());
-        int r4 = rand.nextInt(person.size());
-        int r5 = rand.nextInt(person.size());
-        int r6 = rand.nextInt(person.size());
-        System.out.println(" test " + randomIndex + " " + r2 + " " + r3);
-
-        //henter ut rikitg navn og de andre navn alternativene
-        name = person.get(randomIndex).getName();
-        String r2n = person.get(r2).getName();
-        String r3n = person.get(r3).getName();
-
-        // Henter ut knapper og setter de i en liste for å shuffle rekkefølgen
+        //henter knappene og shuffler rekkefølgen
         Button radioButton1 = (Button) findViewById(R.id.radioButton1);
         Button radioButton2 = (Button) findViewById(R.id.radioButton2);
         Button radioButton3 = (Button) findViewById(R.id.radioButton3);
-        List<Button> list = Arrays.asList(radioButton1, radioButton2, radioButton3);
-        Collections.shuffle(list);
-        System.out.println(list);
-//        list.get(0).setText(name);
-//        list.get(1).setText(r2n);
-//        list.get(2).setText(r3n);
-        radioButton1.setText(name);
-        radioButton2.setText(r2n);
-        radioButton3.setText(r3n);
+        List<Button> buttons = Arrays.asList(radioButton1, radioButton2, radioButton3);
+        Collections.shuffle(buttons);
+
+        //riktig person setup
+        int randomIndex = rand.nextInt(person.size());
+        name = person.get(randomIndex).getName();
+        buttons.get(0).setText(name);
+
+        //henter random navn fra navnlisten og sjekker at det ikke er samme som riktig person
+        int r2 = rand.nextInt(names.size());
+        String name2 = names.get(r2);
+        while (name.equals(name2)) {
+            r2 = rand.nextInt(names.size());
+            name2 = names.get(r2);
+            System.out.println(" while 1 ");
+        }
+        String r2n = names.get(r2);
+        buttons.get(1).setText(r2n);
+
+
+
+        int r3 = rand.nextInt(names.size());
+        String name3 = names.get(r3);
+        while (name.equals(name3) || r2n.equals(name3)) {
+            r3 = rand.nextInt(names.size());
+            name3 = names.get(r3);
+            System.out.println("while 2");
+            System.out.println("r3 " + r3);
+            System.out.println("name 3 "  + name3 );
+            System.out.println("name " + name);
+            System.out.println("r2n " + r2n);
+        }
+        String r3n = names.get(r3);
+        buttons.get(2).setText(r3n);
 
         //setter bildet
         ImageView imageView = findViewById(R.id.profile_picture);

@@ -1,6 +1,6 @@
 package no.hvl.dat153.recyclerview;
 
-import static no.hvl.dat153.MainActivity.personList;
+
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import no.hvl.dat153.Person;
+import no.hvl.dat153.PersonDao;
 import no.hvl.dat153.R;
 
 public class RecyclerViewFragment extends Fragment implements RecyclerInterface {
@@ -25,6 +26,8 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected List<Person> localDataSet;
+    private PersonDao dao = new PersonDao();
+    private List<Person> personList = dao.getAllPersons();
 
     /**
      * called to do initial creation of the fragment

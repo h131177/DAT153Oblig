@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Random;
+
 public class Person implements Parcelable {
 
     private String name;
@@ -15,10 +17,10 @@ public class Person implements Parcelable {
     public Person() {
     }
 
-    public Person(String name, Uri path, int currentColor) {
+    public Person(String name, Uri path) {
         this.name = name;
         this.path = path;
-        this.currentColor = currentColor;
+        this.currentColor = randomColor();
     }
 
     protected Person(Parcel in) {
@@ -67,5 +69,10 @@ public class Person implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(String.valueOf(path));
+    }
+    public int randomColor(){
+        Random rnd = new Random();
+        int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        return currentColor;
     }
 }
