@@ -3,6 +3,7 @@ package no.hvl.dat153;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.util.List;
+import java.util.Random;
 
 public class AddEntryActivity extends AppCompatActivity {
 
@@ -44,6 +46,7 @@ public class AddEntryActivity extends AppCompatActivity {
             String name = nameInput.getText().toString();
             //TODO Fix CurrentColor
             Person p = new Person(name, fullPhotoUri);
+            System.out.println(p);
             dao.insert(p);
         });
     }

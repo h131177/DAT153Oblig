@@ -5,7 +5,6 @@ package no.hvl.dat153.recyclerview;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,8 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import no.hvl.dat153.Person;
@@ -48,7 +45,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         TextView textView;
         ImageView imageView;
         FrameLayout buttonView;
-        Button sortView;
 
         public ViewHolder(@NonNull View itemView, RecyclerInterface recyclerInterface) {
             super(itemView);
@@ -56,14 +52,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             textView = itemView.findViewById(R.id.textView2);
             imageView = itemView.findViewById(R.id.imageView2);
             buttonView = itemView.findViewById(R.id.frameItem);
-            /*sortView = itemView.findViewById(R.id.buttonSort);
-                sortView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        recyclerInterface.onClickSort();
-                    }
-                });*/
-            System.out.println("adapter viewholder");
             buttonView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -87,7 +75,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //Create new view, which defines the UI of the list item
        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
        View view = inflater.inflate(R.layout.db_row_item, viewGroup, false);
-        System.out.println("adapter oncreate");
 
         return new ViewHolder(view, recyclerInterface);
     }
@@ -95,7 +82,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     //Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position){
-        System.out.println("adapter onbind");
 
         //Get elements from you dataset at this position and replace the
         //the contents of the view with that element
@@ -112,28 +98,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onItemLongClick(int position) {
-        System.out.println("adapter remove");
         personList.remove(position);
         adapter.notifyItemRemoved(position);
 
-    }
-    @Override
-    public void onClickSort() {
-
-        Collections.sort(personList, new Comparator<Person>() {
-            @Override
-            public int compare(Person person, Person t1) {
-                System.out.println("adapter clicksort");
-                return (person.getName().compareTo(t1.getName()));
-            }
-
-
-        });
-        refresh();
-    }
-    @Override
-    public void refresh(){
-        adapter.notifyDataSetChanged();
     }
 
 
