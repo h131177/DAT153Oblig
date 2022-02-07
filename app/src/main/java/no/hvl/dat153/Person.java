@@ -14,9 +14,6 @@ public class Person implements Parcelable {
     private Uri path;
     private int currentColor;
 
-    public Person() {
-    }
-
     public Person(String name, Uri path) {
         this.name = name;
         this.path = path;
@@ -52,13 +49,10 @@ public class Person implements Parcelable {
         return path;
     }
 
-    public void setPath(Uri path) {
-        this.path = path;
+    public int getCurrentColor() {
+        return currentColor;
     }
 
-    public int getCurrentColor() { return currentColor;}
-
-    public void setCurrentColor() { this.currentColor = currentColor;}
 
     @Override
     public int describeContents() {
@@ -70,7 +64,8 @@ public class Person implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(String.valueOf(path));
     }
-    public int randomColor(){
+
+    public int randomColor() {
         Random rnd = new Random();
         int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         return currentColor;
