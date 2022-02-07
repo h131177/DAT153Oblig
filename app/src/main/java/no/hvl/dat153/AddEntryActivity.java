@@ -35,7 +35,6 @@ public class AddEntryActivity extends AppCompatActivity {
             personList = MainActivity.personList;
             //personList = extras.getParcelableArrayList("liste");
         }
-        System.out.println("Første item: " + personList.get(0).getName());
 
         btnChoose.setOnClickListener((View v) -> {
             selectImage();
@@ -61,9 +60,8 @@ public class AddEntryActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_OPEN && resultCode == RESULT_OK) {
             fullPhotoUri = data.getData();
-            Uri uritest = Uri.parse("android.resource://no.hvl.dat153/drawable/obama");
             // Do work with full size photo saved at fullPhotoUri
-            iv.setImageURI(uritest);
+            iv.setImageURI(fullPhotoUri);
             getContentResolver().takePersistableUriPermission(fullPhotoUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
     }
