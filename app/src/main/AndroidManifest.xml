@@ -13,6 +13,7 @@
             android:name=".ResultActivity"
             android:exported="false" />
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".AddEntryActivity"
             android:exported="false" />
         <activity
@@ -25,9 +26,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".dbActivity"
             android:exported="false" />
     </application>

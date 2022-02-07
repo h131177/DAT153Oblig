@@ -30,11 +30,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private String name;
-    private String answer;
-    private String displayScore;
     private int score;
     private int total;
-    private RadioButton radioButton;
     private List<Person> person;
     private List<String> names;
     private PersonDao dao = new PersonDao();
@@ -45,10 +42,17 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         person = dao.getAllPersons();
         names = dao.getNames();
         setScreen();
+//        final Button quiz_back = findViewById(R.id.quiz_back);
+//        quiz_back.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                startActivity(quiz);
+//            }
+//        });
     }
 
     private void setScreen() {
@@ -60,62 +64,62 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             result.putExtra("score", String.valueOf(score));
             result.putExtra("total", String.valueOf(total));
             startActivity(result);
+        }else {
+
+            //henter knappene og shuffler rekkefølgen
+            Button radioButton1 = (Button) findViewById(R.id.radioButton1);
+            Button radioButton2 = (Button) findViewById(R.id.radioButton2);
+            Button radioButton3 = (Button) findViewById(R.id.radioButton3);
+            List<Button> buttons = Arrays.asList(radioButton1, radioButton2, radioButton3);
+            Collections.shuffle(buttons);
+
+            //riktig person setup
+            int randomIndex = rand.nextInt(person.size());
+            name = person.get(randomIndex).getName();
+            buttons.get(0).setText(name);
+
+            //henter random navn fra navnlisten og sjekker at det ikke er samme som riktig person
+            int r2 = rand.nextInt(names.size());
+            String name2 = names.get(r2);
+            while (name.equals(name2)) {
+                r2 = rand.nextInt(names.size());
+                name2 = names.get(r2);
+                System.out.println(" while 1 ");
+            }
+            String r2n = names.get(r2);
+            buttons.get(1).setText(r2n);
+
+            int r3 = rand.nextInt(names.size());
+            String name3 = names.get(r3);
+            while (name.equals(name3) || r2n.equals(name3)) {
+                r3 = rand.nextInt(names.size());
+                name3 = names.get(r3);
+                System.out.println("while 2");
+                System.out.println("r3 " + r3);
+                System.out.println("name 3 " + name3);
+                System.out.println("name " + name);
+                System.out.println("r2n " + r2n);
+            }
+            String r3n = names.get(r3);
+            buttons.get(2).setText(r3n);
+
+            //setter bildet
+            ImageView imageView = findViewById(R.id.profile_picture);
+            imageView.setImageURI(person.get(randomIndex).getPath());
+
+            //tar vekk person fra listen etter den har blitt vist for å ikke repetere person
+            person.remove(randomIndex);
         }
-
-        //henter knappene og shuffler rekkefølgen
-        Button radioButton1 = (Button) findViewById(R.id.radioButton1);
-        Button radioButton2 = (Button) findViewById(R.id.radioButton2);
-        Button radioButton3 = (Button) findViewById(R.id.radioButton3);
-        List<Button> buttons = Arrays.asList(radioButton1, radioButton2, radioButton3);
-        Collections.shuffle(buttons);
-
-        //riktig person setup
-        int randomIndex = rand.nextInt(person.size());
-        name = person.get(randomIndex).getName();
-        buttons.get(0).setText(name);
-
-        //henter random navn fra navnlisten og sjekker at det ikke er samme som riktig person
-        int r2 = rand.nextInt(names.size());
-        String name2 = names.get(r2);
-        while (name.equals(name2)) {
-            r2 = rand.nextInt(names.size());
-            name2 = names.get(r2);
-            System.out.println(" while 1 ");
-        }
-        String r2n = names.get(r2);
-        buttons.get(1).setText(r2n);
-
-
-
-        int r3 = rand.nextInt(names.size());
-        String name3 = names.get(r3);
-        while (name.equals(name3) || r2n.equals(name3)) {
-            r3 = rand.nextInt(names.size());
-            name3 = names.get(r3);
-            System.out.println("while 2");
-            System.out.println("r3 " + r3);
-            System.out.println("name 3 "  + name3 );
-            System.out.println("name " + name);
-            System.out.println("r2n " + r2n);
-        }
-        String r3n = names.get(r3);
-        buttons.get(2).setText(r3n);
-
-        //setter bildet
-        ImageView imageView = findViewById(R.id.profile_picture);
-        imageView.setImageURI(person.get(randomIndex).getPath());
-
-        //tar vekk person fra listen etter den har blitt vist for å ikke repetere person
-        person.remove(randomIndex);
     }
 
     @Override
     public void onClick(View view) {
+        String answer = "";
+        String displayScore = "";
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
-
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId != -1) {
-            radioButton = (RadioButton) findViewById(selectedId);
+            RadioButton radioButton = (RadioButton) findViewById(selectedId);
             if (radioButton != null) {
                 total++;
                 String display = "";

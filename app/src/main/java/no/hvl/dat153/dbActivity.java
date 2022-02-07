@@ -25,6 +25,7 @@ public class dbActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Button add_entry = (Button) findViewById(R.id.add_entry);
         Intent entry = new Intent(this,AddEntryActivity.class);

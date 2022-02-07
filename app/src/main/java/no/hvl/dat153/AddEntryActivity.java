@@ -27,6 +27,7 @@ public class AddEntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
         Button btnAdd = findViewById(R.id.addButton);
