@@ -19,14 +19,23 @@ public class PersonDao implements Dao{
     Uri TrudeauB = Uri.parse("android.resource://no.hvl.dat153/drawable/trudeau");
     Uri HillaryB = Uri.parse("android.resource://no.hvl.dat153/drawable/hillary");
     Uri JoeyB = Uri.parse("android.resource://no.hvl.dat153/drawable/joe");
+    Uri JohnsonB = Uri.parse("android.resource://no.hvl.dat153/drawable/johnson");
+    Uri WarrenB = Uri.parse("android.resource://no.hvl.dat153/drawable/warren");
+    Uri MerkelB = Uri.parse("android.resource://no.hvl.dat153/drawable/merkel");
+    Uri HarrisB = Uri.parse("android.resource://no.hvl.dat153/drawable/harris");
+
     List<Person> peoples = new LinkedList<>(Arrays.asList(
-            new Person("Obama", ObamaB),
-            new Person("Putin", PutinB),
-            new Person("Trump", TrumpB),
+            new Person("Barack Obama", ObamaB),
+            new Person("Vladimir Putin", PutinB),
+            new Person("Donald Trump", TrumpB),
             new Person("Bernie Sanders",SandersB),
             new Person("Justin Trudeau", TrudeauB),
             new Person("Joe Biden", JoeyB),
-            new Person("Hillary", HillaryB)));
+            new Person("Hillary Clinton", HillaryB),
+            new Person("Boris Johnson", JohnsonB),
+            new Person("Elisabeth Warren", WarrenB),
+            new Person("Angela Merkel", MerkelB),
+            new Person("Kamala Harris", HarrisB)));
     List<String> names = new ArrayList<>();
 
     public PersonDao() {
