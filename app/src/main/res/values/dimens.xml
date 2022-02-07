@@ -8,7 +8,7 @@
     <dimen name="score">25sp</dimen>
     <dimen name="list_item_width">250dp</dimen>
     <dimen name="list_item_padding">20dp</dimen>
-    <dimen name="list_item_textsize">30dp</dimen>
+    <dimen name="list_item_textsize">25dp</dimen>
     <dimen name="list_item_imagewidth">150dp</dimen>
     <dimen name="list_item_layoutheight">90dp</dimen>
 </resources>
