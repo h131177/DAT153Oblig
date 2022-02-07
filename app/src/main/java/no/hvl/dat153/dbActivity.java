@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,17 +19,24 @@ import no.hvl.dat153.recyclerview.RecyclerViewFragment;
 public class dbActivity extends AppCompatActivity{
 
     List<Person> personList = MainActivity.personList;
-    private RecyclerViewFragment recyclerViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
 
+        final Button add_entry = (Button) findViewById(R.id.add_entry);
+        Intent entry = new Intent(this,AddEntryActivity.class);
+        //Overfører heile listen med personer til addEntry aktiviteten
+        entry.putExtra("liste", String.valueOf(personList));
+        add_entry.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(entry);
+            }
+        });
 
 
-
-        Button sortAlpha = findViewById(R.id.sortButton);
+        final Button sortAlpha = findViewById(R.id.sortButton);
         sortAlpha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +50,7 @@ public class dbActivity extends AppCompatActivity{
                 });
             }
         });
-        Button sortRevAlpha = findViewById(R.id.sortButton2);
+        final Button sortRevAlpha = findViewById(R.id.sortButton2);
             sortRevAlpha.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

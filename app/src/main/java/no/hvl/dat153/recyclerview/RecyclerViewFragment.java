@@ -41,9 +41,6 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
 
     /**
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
      * @return the view hierarchy associated with the fragment
      */
     @Override
@@ -90,6 +87,7 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
         mAdapter.notifyItemRemoved(position);
     }
 
+    @Override
     public void onClickSort() {
         Collections.sort(personList, new Comparator<Person>() {
             @Override
@@ -99,9 +97,9 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
 
 
         });
-        //refresh();
+        refresh();
     }
-
+    @Override
     public void refresh(){
         mAdapter.notifyDataSetChanged();
     }

@@ -2,7 +2,6 @@ package no.hvl.dat153.recyclerview;
 
 import static no.hvl.dat153.MainActivity.personList;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,7 +54,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             textView = itemView.findViewById(R.id.textView2);
             imageView = itemView.findViewById(R.id.imageView2);
             buttonView = itemView.findViewById(R.id.frameItem);
-            /*sortView = itemView.findViewById(R.id.sortButton);
+            /*sortView = itemView.findViewById(R.id.buttonSort);
                 sortView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -112,7 +111,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         adapter.notifyItemRemoved(position);
 
     }
-   /* @Override
+    @Override
     public void onClickSort() {
         Collections.sort(personList, new Comparator<Person>() {
             @Override
@@ -124,11 +123,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         });
         refresh();
     }
-
+    @Override
     public void refresh(){
         adapter.notifyDataSetChanged();
     }
-*/
+
 
 
 }

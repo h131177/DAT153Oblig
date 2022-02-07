@@ -6,11 +6,11 @@
     android:layout_height="@dimen/list_item_layoutheight"
     android:gravity="center_vertical"
     >
+
     <FrameLayout
         android:id="@+id/frameItem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView2"
@@ -22,12 +22,12 @@
             android:textSize="@dimen/list_item_textsize"></TextView>
 
         <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="@dimen/list_item_imagewidth"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/list_item_width"
-        tools:srcCompat="@tools:sample/avatars"
-        />
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/list_item_imagewidth"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/list_item_width"
+            tools:srcCompat="@tools:sample/avatars" />
+
     </FrameLayout>
 
 </FrameLayout>
