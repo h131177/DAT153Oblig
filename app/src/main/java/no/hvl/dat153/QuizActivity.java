@@ -35,8 +35,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> names;
     private List<Person> person;
     //private PersonDao dao = new PersonDao();
-
-
+    // TODO Lage ein kopi av listen, slik at databasen ikkje blir sletta
+    // TODO Fikse layout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
