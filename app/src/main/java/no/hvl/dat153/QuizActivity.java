@@ -36,12 +36,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private List<Person> person;
     //private PersonDao dao = new PersonDao();
     // TODO Lage ein kopi av listen, slik at databasen ikkje blir sletta
-    // TODO Fikse layout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        setContentView(R.layout.activity_quiz3);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         person = PersonDao.getInstance().getAllPersons();
