@@ -6,11 +6,19 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Random;
 
+@Entity(tableName = "person")
 public class Person implements Parcelable {
 
+    @PrimaryKey
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo (name = "path")
     private Uri path;
     private int currentColor;
 
