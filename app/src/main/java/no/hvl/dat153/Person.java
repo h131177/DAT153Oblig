@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -16,21 +17,22 @@ import java.util.Random;
 public class Person implements Parcelable {
 
     @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "name")
     private String name;
     @ColumnInfo (name = "path")
-    private Uri path;
-    private int currentColor;
+    private String path;
+    //private int currentColor;
 
-    public Person(String name, Uri path) {
+    public Person(String name, String path) {
         this.name = name;
         this.path = path;
-        this.currentColor = randomColor();
+        //this.currentColor = randomColor();
     }
 
     protected Person(Parcel in) {
         name = in.readString();
-        path = Uri.parse(in.readString());
+        path = in.readString();
     }
 
     public static final Creator<Person> CREATOR = new Creator<Person>() {
@@ -53,13 +55,13 @@ public class Person implements Parcelable {
         this.name = name;
     }
 
-    public Uri getPath() {
+    public String getPath() {
         return path;
     }
 
-    public int getCurrentColor() {
+    /*public int getCurrentColor() {
         return currentColor;
-    }
+    }*/
 
 
     @Override
@@ -78,4 +80,5 @@ public class Person implements Parcelable {
         int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         return currentColor;
     }
+
 }
