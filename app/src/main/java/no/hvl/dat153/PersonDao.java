@@ -1,5 +1,6 @@
 package no.hvl.dat153;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -10,7 +11,7 @@ import java.util.List;
 @Dao
 public interface PersonDao {
     @Query("SELECT * FROM person")
-    public List<Person> getAllPersons();
+    public LiveData<List<Person>> getAllPersons();
     //@Query("SELECT ")
     //public Person getPerson(int index);
     @Insert
