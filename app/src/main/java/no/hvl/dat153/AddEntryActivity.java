@@ -52,6 +52,7 @@ public class AddEntryActivity extends AppCompatActivity {
             System.out.println(p);
             //PersonDao.getInstance().insert(p);
             personDao.insert(p);
+            // TODO Add toast message
         });
     }
 
