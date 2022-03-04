@@ -2,6 +2,7 @@ package no.hvl.dat153;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +17,8 @@ import no.hvl.dat153.recyclerview.RecyclerViewFragment;
 
 public class dbActivity extends AppCompatActivity{
 
-    private List<Person> personList;
+    private List<Person> person;
+    MainViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,13 @@ public class dbActivity extends AppCompatActivity{
         setContentView(R.layout.activity_db);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //personList = PersonDao.getInstance().peoples;
-        personList = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
+        //personList = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
+
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel.getAllPerson().observe(this, (List<Person> personList) ->{
+            person = personList;
+        });
+
 
         final Button add_entry = (Button) findViewById(R.id.add_entry);
         Intent entry = new Intent(this,AddEntryActivity.class);
@@ -39,7 +47,7 @@ public class dbActivity extends AppCompatActivity{
         sortAlpha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Collections.sort(personList, new Comparator<Person>() {
+                Collections.sort(person, new Comparator<Person>() {
                     @Override
                     public int compare(Person person, Person t1) {
                         return (person.getName().compareTo(t1.getName()));
@@ -53,13 +61,13 @@ public class dbActivity extends AppCompatActivity{
             sortRevAlpha.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Collections.sort(personList, new Comparator<Person>() {
+                    Collections.sort(person, new Comparator<Person>() {
                         @Override
                         public int compare(Person person, Person t1) {
                             return (person.getName().compareTo(t1.getName()));
                         }
                     });
-                    Collections.reverse(personList);
+                    Collections.reverse(person);
                     fragment(savedInstanceState);
 
                 }

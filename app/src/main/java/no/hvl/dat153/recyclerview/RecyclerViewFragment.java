@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Observer;
 
 import no.hvl.dat153.AppDatabase;
+import no.hvl.dat153.MainViewModel;
 import no.hvl.dat153.Person;
 import no.hvl.dat153.PersonDao;
 import no.hvl.dat153.R;
@@ -27,6 +31,7 @@ import no.hvl.dat153.R;
 
 public class RecyclerViewFragment extends Fragment implements RecyclerInterface {
 
+    protected MainViewModel mViewModel;
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -34,7 +39,7 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
 
     //private PersonDao dao = new PersonDao();
     //private List<Person> personList = PersonDao.getInstance().getAllPersons();
-    private List<Person> personList = AppDatabase.getDatabase(getContext()).personDao().getAllPersons();
+    private List<Person> personList;
     /**
      * called to do initial creation of the fragment
      * @param savedInstanceState
@@ -43,6 +48,8 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         //Initialize dataset
         initDataset();
@@ -55,6 +62,11 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.recycler_view_fragment, container, false);
 
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel.getAllPerson().observe(getViewLifecycleOwner(), (List<Person> personList) -> {
+            mAdapter = new CustomAdapter(personList, this);
+            mRecyclerView.setAdapter(mAdapter);
+            });
 
         // BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
@@ -70,9 +82,9 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
         //setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
         // Set CustomAdapter as the adapter for RecyclerView.
-        mAdapter = new CustomAdapter(localDataSet, this);
+        //mAdapter = new CustomAdapter(localDataSet, this);
 
-        mRecyclerView.setAdapter(mAdapter);
+        //mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
 
         return rootView;
@@ -85,6 +97,7 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
         localDataSet = personList;
 
     }
+
 
     @Override
     public void onItemLongClick(int position) {

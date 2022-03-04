@@ -1,6 +1,8 @@
 package no.hvl.dat153;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 
 import android.app.Application;
@@ -18,9 +20,8 @@ import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
-    private List<Person> personList;
+    private LiveData<List<Person>> personList;
     //private PersonDao dao = new PersonDao();
-
 
  //
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         //personList = dao.getAllPersons();
         //personList = PersonDao.getInstance().peoples;
         personList = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
+
 
         //finner knapp med id
         final Button take_quiz = (Button) findViewById(R.id.take_quiz);

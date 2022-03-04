@@ -33,7 +33,8 @@ public class AddEntryActivity extends AppCompatActivity {
         //dao = new PersonDao();
         //personList = PersonDao.getInstance().peoples;
         PersonDao personDao = AppDatabase.getDatabase(getApplicationContext()).personDao();
-        personList = personDao.getAllPersons();
+//      personList = personDao.getAllPersons();
+
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
         Button btnAdd = findViewById(R.id.addButton);

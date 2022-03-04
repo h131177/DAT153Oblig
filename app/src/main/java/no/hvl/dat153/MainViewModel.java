@@ -20,7 +20,7 @@ public class MainViewModel extends AndroidViewModel {
 
     }
 
-    LiveData<List<Person>> getAllPerson(){
+    public LiveData<List<Person>> getAllPerson(){
         return personList;
     }
 

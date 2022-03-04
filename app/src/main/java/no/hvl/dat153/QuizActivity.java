@@ -1,6 +1,7 @@
 package no.hvl.dat153;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -34,6 +35,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private int total;
     private List<String> names = new ArrayList<>();
     private List<Person> person;
+    private MainViewModel mViewModel;
     //private PersonDao dao = new PersonDao();
     // TODO Lage ein kopi av listen, slik at databasen ikkje blir sletta
 
@@ -44,10 +46,19 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //person = PersonDao.getInstance().getAllPersons();
-        person = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
+        //person = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
+
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel.getAllPerson().observe(this, (List<Person> personList) -> {
+            person = personList;
+            names = getNames();
+            setScreen();
+
+        });
+
         //names = PersonDao.getInstance().getNames();
-        names = getNames();
-        setScreen();
+
+
 //        final Button quiz_back = findViewById(R.id.quiz_back);
 //        quiz_back.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
@@ -55,6 +66,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
     }
+
+
 
     private void setScreen() {
         Random rand = new Random();

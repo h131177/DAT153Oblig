@@ -34,7 +34,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public CustomAdapter(List<Person> personList, RecyclerInterface recyclerInterface){
         this.personList = personList;
         this.recyclerInterface = recyclerInterface;
-        System.out.println("adapter constructor");
+        
 
     }
 
