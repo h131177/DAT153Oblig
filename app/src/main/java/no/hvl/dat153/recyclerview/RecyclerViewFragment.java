@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import no.hvl.dat153.AppDatabase;
 import no.hvl.dat153.Person;
 import no.hvl.dat153.PersonDao;
 import no.hvl.dat153.R;
@@ -32,8 +33,8 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     protected List<Person> localDataSet;
 
     //private PersonDao dao = new PersonDao();
-    private List<Person> personList = PersonDao.getInstance().getAllPersons();
-
+    //private List<Person> personList = PersonDao.getInstance().getAllPersons();
+    private List<Person> personList = AppDatabase.getDatabase(getContext()).personDao().getAllPersons();
     /**
      * called to do initial creation of the fragment
      * @param savedInstanceState

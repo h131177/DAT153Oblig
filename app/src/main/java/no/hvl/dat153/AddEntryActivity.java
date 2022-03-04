@@ -31,7 +31,9 @@ public class AddEntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_entry);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //dao = new PersonDao();
-        personList = PersonDao.getInstance().peoples;
+        //personList = PersonDao.getInstance().peoples;
+        PersonDao personDao = AppDatabase.getDatabase(getApplicationContext()).personDao();
+        personList = personDao.getAllPersons();
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
         Button btnAdd = findViewById(R.id.addButton);
@@ -45,9 +47,10 @@ public class AddEntryActivity extends AppCompatActivity {
         btnAdd.setOnClickListener((View v) -> {
             String name = nameInput.getText().toString();
             //TODO Fix CurrentColor
-            Person p = new Person(name, fullPhotoUri);
+            Person p = new Person(name, fullPhotoUri.toString());
             System.out.println(p);
-            PersonDao.getInstance().insert(p);
+            //PersonDao.getInstance().insert(p);
+            personDao.insert(p);
         });
     }
 

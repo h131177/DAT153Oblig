@@ -32,7 +32,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private String name;
     private int score;
     private int total;
-    private List<String> names;
+    private List<String> names = new ArrayList<>();
     private List<Person> person;
     //private PersonDao dao = new PersonDao();
     // TODO Lage ein kopi av listen, slik at databasen ikkje blir sletta
@@ -43,8 +43,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_quiz3);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        person = PersonDao.getInstance().getAllPersons();
-        names = PersonDao.getInstance().getNames();
+        //person = PersonDao.getInstance().getAllPersons();
+        person = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
+        //names = PersonDao.getInstance().getNames();
+        names = getNames();
         setScreen();
 //        final Button quiz_back = findViewById(R.id.quiz_back);
 //        quiz_back.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +143,14 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             Toast.makeText(QuizActivity.this, "choose one", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private List<String> getNames(){
+        Iterator<Person> it = person.iterator();
+        while(it.hasNext()){
+            names.add(it.next().getName());
+        }
+        return names;
     }
 }
 

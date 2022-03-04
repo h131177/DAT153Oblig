@@ -17,14 +17,15 @@ public abstract class AppDatabase extends RoomDatabase {
 //    .fallbackToDestructiveMigration()
 //    .build();
 
-    static AppDatabase getDatabase(final Context context) {
+    public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE =
                             Room.databaseBuilder(context, AppDatabase.class, "person.db")
-                                    .createFromAsset("database/person.db")
+                                    .createFromAsset("person.db")
                                     .fallbackToDestructiveMigration()
+                                    .allowMainThreadQueries()
                                     .build();
                 }
             }
