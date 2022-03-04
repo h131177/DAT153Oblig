@@ -2,6 +2,7 @@ package no.hvl.dat153.recyclerview;
 
 
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,8 +87,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //Get elements from you dataset at this position and replace the
         //the contents of the view with that element
         holder.textView.setText(personList.get(position).getName());
-        holder.imageView.setImageURI(personList.get(position).getPath());
-        holder.buttonView.setBackgroundColor(personList.get(position).getCurrentColor());
+        holder.imageView.setImageURI(Uri.parse(personList.get(position).getPath()));
+        //holder.buttonView.setBackgroundColor(personList.get(position).getCurrentColor());
     }
 
     //Return the size of your dataset (invoked by the layout manager)
