@@ -104,7 +104,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
             //setter bildet
             ImageView imageView = findViewById(R.id.profile_picture);
-            imageView.setImageURI(person.get(randomIndex).getPath());
+            imageView.setImageURI(Uri.parse(person.get(randomIndex).getPath()));
 
             //tar vekk person fra listen etter den har blitt vist for å ikke repetere person
             person.remove(randomIndex);
