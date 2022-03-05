@@ -2,6 +2,7 @@ package no.hvl.dat153.recyclerview;
 
 
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Random;
 
 import no.hvl.dat153.MainViewModel;
 import no.hvl.dat153.Person;
@@ -92,7 +94,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //the contents of the view with that element
         holder.textView.setText(personList.get(position).getName());
         holder.imageView.setImageURI(Uri.parse(personList.get(position).getPath()));
-        //holder.buttonView.setBackgroundColor(personList.get(position).getCurrentColor());
+        holder.buttonView.setBackgroundColor(personList.get(position).randomColor());
     }
 
     //Return the size of your dataset (invoked by the layout manager)
@@ -108,8 +110,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         adapter.notifyItemRemoved(position);
 
     }
-
-
 
 }
 

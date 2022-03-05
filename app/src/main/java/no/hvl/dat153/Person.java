@@ -22,12 +22,11 @@ public class Person implements Parcelable {
     private String name;
     @ColumnInfo (name = "path")
     private String path;
-    //private int currentColor;
+
 
     public Person(String name, String path) {
         this.name = name;
         this.path = path;
-        //this.currentColor = randomColor();
     }
 
     protected Person(Parcel in) {
@@ -59,10 +58,6 @@ public class Person implements Parcelable {
         return path;
     }
 
-    /*public int getCurrentColor() {
-        return currentColor;
-    }*/
-
 
     @Override
     public int describeContents() {
@@ -74,11 +69,11 @@ public class Person implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(String.valueOf(path));
     }
-
     public int randomColor() {
         Random rnd = new Random();
         int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         return currentColor;
     }
+
 
 }
