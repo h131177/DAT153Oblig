@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Random;
@@ -57,6 +58,8 @@ public class AddEntryActivity extends AppCompatActivity {
             //personDao.insert(p);
             mViewModel.insert(p);
             // TODO Add toast message
+            String text = "Image of " + name + " added to database";
+            Toast.makeText(AddEntryActivity.this, text, Toast.LENGTH_SHORT).show();
         });
     }
 
