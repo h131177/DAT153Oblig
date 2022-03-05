@@ -57,7 +57,6 @@ public class AddEntryActivity extends AppCompatActivity {
             //PersonDao.getInstance().insert(p);
             //personDao.insert(p);
             mViewModel.insert(p);
-            // TODO Add toast message
             String text = "Image of " + name + " added to database";
             Toast.makeText(AddEntryActivity.this, text, Toast.LENGTH_SHORT).show();
         });
