@@ -36,17 +36,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> names = new ArrayList<>();
     private List<Person> person;
     private MainViewModel mViewModel;
-    //private PersonDao dao = new PersonDao();
-    // TODO Lage ein kopi av listen, slik at databasen ikkje blir sletta
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz3);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //person = PersonDao.getInstance().getAllPersons();
-        //person = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
 
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.getAllPerson().observe(this, (List<Person> personList) -> {
@@ -56,9 +51,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         });
 
-        //names = PersonDao.getInstance().getNames();
-
-
 //        final Button quiz_back = findViewById(R.id.quiz_back);
 //        quiz_back.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
@@ -66,8 +58,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
     }
-
-
 
     private void setScreen() {
         Random rand = new Random();

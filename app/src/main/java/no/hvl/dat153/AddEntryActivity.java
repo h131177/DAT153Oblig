@@ -23,8 +23,6 @@ public class AddEntryActivity extends AppCompatActivity {
     private ImageView iv;
     private EditText nameInput;
     private Uri fullPhotoUri;
-    //private PersonDao dao;
-    private List<Person> personList;
     MainViewModel mViewModel;
 
 
@@ -33,11 +31,6 @@ public class AddEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //dao = new PersonDao();
-        //personList = PersonDao.getInstance().peoples;
-        
-        //PersonDao personDao = AppDatabase.getDatabase(getApplicationContext()).personDao();
-        //personList = personDao.getAllPersons();
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
@@ -54,8 +47,6 @@ public class AddEntryActivity extends AppCompatActivity {
             //TODO Fix CurrentColor
             Person p = new Person(name, fullPhotoUri.toString());
             System.out.println(p);
-            //PersonDao.getInstance().insert(p);
-            //personDao.insert(p);
             mViewModel.insert(p);
             String text = "Image of " + name + " added to database";
             Toast.makeText(AddEntryActivity.this, text, Toast.LENGTH_SHORT).show();
