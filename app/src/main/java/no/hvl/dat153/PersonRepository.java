@@ -25,9 +25,7 @@ public class PersonRepository {
     }
 
     LiveData<List<Person>> getAllPersons(){return personList;}
-
     LiveData<List<Person>> getAllPersonsDesc(){return personListDesc;};
-
     LiveData<List<Person>> getAllPersonsAsc(){return personListAsc;};
 
     public void insertPerson(Person insert) {

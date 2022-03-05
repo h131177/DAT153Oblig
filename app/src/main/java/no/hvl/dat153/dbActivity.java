@@ -32,7 +32,6 @@ public class dbActivity extends AppCompatActivity{
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.getAllPerson().observe(this, (List<Person> personList) ->{
             person = personList;
-            System.out.println(person);
         });
 
 
@@ -78,13 +77,13 @@ public class dbActivity extends AppCompatActivity{
 
 
 
-    private void fragment(Bundle savedInstanceState){
+   /* private void fragment(Bundle savedInstanceState){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         RecyclerViewFragment fragment = new RecyclerViewFragment();
         transaction.replace(R.id.fragmentContainerView, fragment);
         transaction.commit();
 
-    }
+    }*/
 
 
 

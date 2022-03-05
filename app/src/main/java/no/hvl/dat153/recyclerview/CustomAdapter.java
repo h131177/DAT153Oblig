@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import no.hvl.dat153.MainViewModel;
 import no.hvl.dat153.Person;
 import no.hvl.dat153.R;
 
@@ -25,6 +26,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     List<Person> personList;
     CustomAdapter adapter;
+    MainViewModel mViewModel;
+
     /**
      * Initialize the dataset of the adapter
      *
@@ -56,6 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             buttonView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
+
                     if (recyclerInterface != null){
                         int pos = getAdapterPosition();
 
@@ -99,7 +103,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onItemLongClick(int position) {
-        personList.remove(position);
+        Person p = mViewModel.getAllPerson().getValue().get(position);
+        mViewModel.delete(p);
         adapter.notifyItemRemoved(position);
 
     }

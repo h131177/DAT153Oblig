@@ -137,8 +137,10 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
 
     @Override
     public void onItemLongClick(int position) {
-        personList.remove(position);
+        Person p = mViewModel.getAllPerson().getValue().get(position);
+        mViewModel.delete(p);
         mAdapter.notifyItemRemoved(position);
+
     }
 
 
