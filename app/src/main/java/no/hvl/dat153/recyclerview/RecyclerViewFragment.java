@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import androidx.annotation.Nullable;
@@ -16,16 +17,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observer;
 
-import no.hvl.dat153.AppDatabase;
 import no.hvl.dat153.MainViewModel;
 import no.hvl.dat153.Person;
-import no.hvl.dat153.PersonDao;
 import no.hvl.dat153.R;
 
 
@@ -66,7 +65,26 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
         mViewModel.getAllPerson().observe(getViewLifecycleOwner(), (List<Person> personList) -> {
             mAdapter = new CustomAdapter(personList, this);
             mRecyclerView.setAdapter(mAdapter);
-            });
+        });
+
+
+        final Button sortAlpha = rootView.findViewById(R.id.sortButton);
+        sortAlpha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortAsc();
+
+            }
+        });
+
+        final Button sortRevAlpha = rootView.findViewById(R.id.sortButton2);
+        sortRevAlpha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortDesc();
+
+            }
+        });
 
         // BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
@@ -99,11 +117,30 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     }
 
 
+    public void sortDesc() {
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel.getAllPersonsDesc().observe(getViewLifecycleOwner(), (List<Person> personList) -> {
+            mAdapter = new CustomAdapter(personList, this);
+            mRecyclerView.setAdapter(mAdapter);
+        });
+
+    }
+
+    public void sortAsc() {
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel.getAllPersonsAsc().observe(getViewLifecycleOwner(), (List<Person> personList) -> {
+            mAdapter = new CustomAdapter(personList, this);
+            mRecyclerView.setAdapter(mAdapter);
+        });
+
+    }
+
     @Override
     public void onItemLongClick(int position) {
         personList.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
+
 
 
 }

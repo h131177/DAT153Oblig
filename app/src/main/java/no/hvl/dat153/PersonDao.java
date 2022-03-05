@@ -18,5 +18,11 @@ public interface PersonDao {
     public void insert(Person p);
     @Delete
     public void delete(Person p);
+
+    @Query("SELECT * FROM person ORDER BY name DESC;")
+    public LiveData<List<Person>> getAllPersonsDesc();
+
+    @Query("SELECT * FROM person ORDER BY name ASC;")
+    public LiveData<List<Person>> getAllPersonsAsc();
 }
 

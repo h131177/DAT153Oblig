@@ -10,6 +10,8 @@ import java.util.List;
 public class PersonRepository {
 
     private LiveData<List<Person>> personList;
+    private LiveData<List<Person>> personListDesc;
+    private LiveData<List<Person>> personListAsc;
     private PersonDao personDao;
 
 
@@ -17,10 +19,16 @@ public class PersonRepository {
         AppDatabase db = AppDatabase.getDatabase(application);
         personDao = db.personDao();
         personList = personDao.getAllPersons();
+        personListDesc = personDao.getAllPersonsDesc();
+        personListAsc = personDao.getAllPersonsAsc();
 
     }
 
     LiveData<List<Person>> getAllPersons(){return personList;}
+
+    LiveData<List<Person>> getAllPersonsDesc(){return personListDesc;};
+
+    LiveData<List<Person>> getAllPersonsAsc(){return personListAsc;};
 
     public void insertPerson(Person insert) {
         InsertAsyncTask task = new InsertAsyncTask(personDao);

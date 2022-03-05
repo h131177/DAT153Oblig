@@ -32,6 +32,7 @@ public class AddEntryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //dao = new PersonDao();
         //personList = PersonDao.getInstance().peoples;
+        
         PersonDao personDao = AppDatabase.getDatabase(getApplicationContext()).personDao();
 //      personList = personDao.getAllPersons();
 

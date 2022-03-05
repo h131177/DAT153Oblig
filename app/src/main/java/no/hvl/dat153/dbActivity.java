@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import no.hvl.dat153.recyclerview.CustomAdapter;
 import no.hvl.dat153.recyclerview.RecyclerViewFragment;
 
 public class dbActivity extends AppCompatActivity{
@@ -31,6 +32,7 @@ public class dbActivity extends AppCompatActivity{
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.getAllPerson().observe(this, (List<Person> personList) ->{
             person = personList;
+            System.out.println(person);
         });
 
 
@@ -42,17 +44,14 @@ public class dbActivity extends AppCompatActivity{
             }
         });
 
+/*
 
-        final Button sortAlpha = findViewById(R.id.sortButton);
+       final Button sortAlpha = findViewById(R.id.sortButton);
         sortAlpha.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Collections.sort(person, new Comparator<Person>() {
-                    @Override
-                    public int compare(Person person, Person t1) {
-                        return (person.getName().compareTo(t1.getName()));
-                    }
-                });
+                sortDesc();
                 fragment(savedInstanceState);
             }
         });
@@ -72,9 +71,12 @@ public class dbActivity extends AppCompatActivity{
 
                 }
             });
-
+*/
+        //fragment(savedInstanceState);
 
     }
+
+
 
     private void fragment(Bundle savedInstanceState){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -83,6 +85,7 @@ public class dbActivity extends AppCompatActivity{
         transaction.commit();
 
     }
+
 
 
 }
