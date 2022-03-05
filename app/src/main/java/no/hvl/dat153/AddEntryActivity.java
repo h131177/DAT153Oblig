@@ -1,6 +1,7 @@
 package no.hvl.dat153;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,6 +24,7 @@ public class AddEntryActivity extends AppCompatActivity {
     private Uri fullPhotoUri;
     //private PersonDao dao;
     private List<Person> personList;
+    MainViewModel mViewModel;
 
 
     @Override
@@ -33,9 +35,9 @@ public class AddEntryActivity extends AppCompatActivity {
         //dao = new PersonDao();
         //personList = PersonDao.getInstance().peoples;
         
-        PersonDao personDao = AppDatabase.getDatabase(getApplicationContext()).personDao();
-//      personList = personDao.getAllPersons();
-
+        //PersonDao personDao = AppDatabase.getDatabase(getApplicationContext()).personDao();
+        //personList = personDao.getAllPersons();
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         Button btnChoose = findViewById(R.id.choosePictureButton);
         Button btnAdd = findViewById(R.id.addButton);
@@ -52,7 +54,8 @@ public class AddEntryActivity extends AppCompatActivity {
             Person p = new Person(name, fullPhotoUri.toString());
             System.out.println(p);
             //PersonDao.getInstance().insert(p);
-            personDao.insert(p);
+            //personDao.insert(p);
+            mViewModel.insert(p);
             // TODO Add toast message
         });
     }
