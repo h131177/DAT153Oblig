@@ -26,8 +26,7 @@ public class dbActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //personList = PersonDao.getInstance().peoples;
-        //personList = AppDatabase.getDatabase(getApplicationContext()).personDao().getAllPersons();
+
 
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.getAllPerson().observe(this, (List<Person> personList) ->{
