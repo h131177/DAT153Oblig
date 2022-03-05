@@ -2,6 +2,7 @@ package no.hvl.dat153.recyclerview;
 
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observer;
+import java.util.Random;
 
 import no.hvl.dat153.MainViewModel;
 import no.hvl.dat153.Person;
@@ -47,8 +49,6 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
         //Initialize dataset
         initDataset();
@@ -139,8 +139,12 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
     public void onItemLongClick(int position) {
         Person p = mViewModel.getAllPerson().getValue().get(position);
         mViewModel.delete(p);
-        mAdapter.notifyItemRemoved(position);
 
+    }
+    public int randomColor() {
+        Random rnd = new Random();
+        int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        return currentColor;
     }
 
 

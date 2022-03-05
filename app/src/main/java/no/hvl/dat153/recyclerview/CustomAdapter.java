@@ -107,7 +107,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onItemLongClick(int position) {
         Person p = mViewModel.getAllPerson().getValue().get(position);
         mViewModel.delete(p);
-        adapter.notifyItemRemoved(position);
 
     }
 
