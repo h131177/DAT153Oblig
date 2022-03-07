@@ -31,11 +31,15 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private String name;
-    private int score;
-    private int total;
+    private static int score;
+    private static int total;
+    private static int wrongButton1;
+    private static int wrongButton2;
     private List<String> names = new ArrayList<>();
     private List<Person> person;
+    private static int correctButton;
     private MainViewModel mViewModel;
+    private String buttonId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +55,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         });
 
-//        final Button quiz_back = findViewById(R.id.quiz_back);
-//        quiz_back.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                startActivity(quiz);
-//            }
-//        });
     }
 
     private void setScreen() {
@@ -80,7 +78,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             //riktig person setup
             int randomIndex = rand.nextInt(person.size());
             name = person.get(randomIndex).getName();
+            correctButton = buttons.get(0).getId();
             buttons.get(0).setText(name);
+//            System.out.println(" id tester.........." + correctButton);
+//            System.out.println(" R.id tester............ " +R.id.radioButton2 );
+
+
 
             //henter random navn fra navnlisten og sjekker at det ikke er samme som riktig person
             int r2 = rand.nextInt(names.size());
@@ -88,24 +91,21 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             while (name.equals(name2)) {
                 r2 = rand.nextInt(names.size());
                 name2 = names.get(r2);
-                System.out.println(" while 1 ");
             }
             String r2n = names.get(r2);
             buttons.get(1).setText(r2n);
+            wrongButton1 = buttons.get(1).getId();
+            System.out.println(" wrongbutton id tester.........." + wrongButton1);
 
             int r3 = rand.nextInt(names.size());
             String name3 = names.get(r3);
             while (name.equals(name3) || r2n.equals(name3)) {
                 r3 = rand.nextInt(names.size());
                 name3 = names.get(r3);
-                System.out.println("while 2");
-                System.out.println("r3 " + r3);
-                System.out.println("name 3 " + name3);
-                System.out.println("name " + name);
-                System.out.println("r2n " + r2n);
             }
             String r3n = names.get(r3);
             buttons.get(2).setText(r3n);
+            wrongButton2 = buttons.get(2).getId();
 
             //setter bildet
             ImageView imageView = findViewById(R.id.profile_picture);
@@ -155,6 +155,21 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
         return names;
     }
+
+
+
+    public static int getCorrectButton(){
+        return correctButton;
+    }
+
+    public static int getWrongButton1(){
+        return wrongButton1;
+    }
+
+    public static int getWrongButton2(){
+        return wrongButton2;
+    }
+
 }
 
 
