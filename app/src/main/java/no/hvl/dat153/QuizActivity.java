@@ -46,6 +46,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz3);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        score = 0;
+        total = 0;
 
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.getAllPerson().observe(this, (List<Person> personList) -> {
