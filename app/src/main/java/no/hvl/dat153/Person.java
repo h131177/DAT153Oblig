@@ -23,7 +23,6 @@ public class Person implements Parcelable {
     @ColumnInfo (name = "path")
     private String path;
 
-
     public Person(String name, String path) {
         this.name = name;
         this.path = path;

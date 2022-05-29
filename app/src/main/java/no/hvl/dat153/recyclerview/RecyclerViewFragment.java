@@ -31,49 +31,33 @@ import no.hvl.dat153.R;
 
 
 public class RecyclerViewFragment extends Fragment implements RecyclerInterface {
-
     protected MainViewModel mViewModel;
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected List<Person> localDataSet;
-
-    //private PersonDao dao = new PersonDao();
-    //private List<Person> personList = PersonDao.getInstance().getAllPersons();
     private List<Person> personList;
-    /**
-     * called to do initial creation of the fragment
-     * @param savedInstanceState
-     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Initialize dataset
         initDataset();
     }
-    /**
-     *
-     * @return the view hierarchy associated with the fragment
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.recycler_view_fragment, container, false);
-
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.getAllPerson().observe(getViewLifecycleOwner(), (List<Person> personList) -> {
             mAdapter = new CustomAdapter(personList, this);
             mRecyclerView.setAdapter(mAdapter);
         });
 
-
         final Button sortAlpha = rootView.findViewById(R.id.sortButton);
         sortAlpha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sortAsc();
-
             }
         });
 
@@ -82,40 +66,17 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
             @Override
             public void onClick(View view) {
                 sortDesc();
-
             }
         });
-
-        // BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
-
-        // LinearLayoutManager will layout the elements in a similar fashion
-        // to the way ListView would layout elements. Linear/Horizontal
-
         mLayoutManager = new LinearLayoutManager(getActivity());
-
-
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        //setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-
-        // Set CustomAdapter as the adapter for RecyclerView.
-        //mAdapter = new CustomAdapter(localDataSet, this);
-
-        //mRecyclerView.setAdapter(mAdapter);
-        // END_INCLUDE(initializeRecyclerView)
-
         return rootView;
     }
 
-    /**
-     * Generating the strings for RecyclerViews adapter
-     */
     private void initDataset() {
         localDataSet = personList;
-
     }
-
 
     public void sortDesc() {
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
@@ -123,7 +84,6 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
             mAdapter = new CustomAdapter(personList, this);
             mRecyclerView.setAdapter(mAdapter);
         });
-
     }
 
     public void sortAsc() {
@@ -132,7 +92,6 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
             mAdapter = new CustomAdapter(personList, this);
             mRecyclerView.setAdapter(mAdapter);
         });
-
     }
 
     @Override
@@ -141,13 +100,5 @@ public class RecyclerViewFragment extends Fragment implements RecyclerInterface 
         mViewModel.delete(p);
 
     }
-    public int randomColor() {
-        Random rnd = new Random();
-        int currentColor = Color.argb(69, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        return currentColor;
-    }
-
-
-
 }
 

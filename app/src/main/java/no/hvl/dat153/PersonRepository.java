@@ -8,12 +8,10 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class PersonRepository {
-
     private LiveData<List<Person>> personList;
     private LiveData<List<Person>> personListDesc;
     private LiveData<List<Person>> personListAsc;
     private PersonDao personDao;
-
 
     PersonRepository(Application application){
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -21,7 +19,6 @@ public class PersonRepository {
         personList = personDao.getAllPersons();
         personListDesc = personDao.getAllPersonsDesc();
         personListAsc = personDao.getAllPersonsAsc();
-
     }
 
     LiveData<List<Person>> getAllPersons(){return personList;}
@@ -38,13 +35,9 @@ public class PersonRepository {
         task.execute(delete);
     }
 
-
     private static class DeleteAsyncTask extends AsyncTask<Person, Void, Void> {
-
         private PersonDao asyncTaskDao;
-
         DeleteAsyncTask(PersonDao dao) { asyncTaskDao = dao;}
-
         @Override
         protected Void doInBackground(final Person... person) {
             asyncTaskDao.delete(person[0]);
@@ -53,11 +46,8 @@ public class PersonRepository {
     }
 
     private static class InsertAsyncTask extends AsyncTask<Person, Void, Void> {
-
         private PersonDao asyncTaskDao;
-
         InsertAsyncTask(PersonDao dao) { asyncTaskDao = dao;}
-
         @Override
         protected Void doInBackground(final Person... person) {
             asyncTaskDao.insert(person[0]);

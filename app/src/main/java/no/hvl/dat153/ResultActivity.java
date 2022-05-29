@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +14,6 @@ public class ResultActivity extends AppCompatActivity {
 
         String score = "";
         String total = "";
-
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             score = extras.getString("score");

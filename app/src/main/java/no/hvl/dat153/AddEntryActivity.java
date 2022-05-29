@@ -17,14 +17,11 @@ import java.util.List;
 import java.util.Random;
 
 public class AddEntryActivity extends AppCompatActivity {
-
     static final int REQUEST_IMAGE_OPEN = 1;
-
     private ImageView iv;
     private EditText nameInput;
     private Uri fullPhotoUri;
     MainViewModel mViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +41,6 @@ public class AddEntryActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener((View v) -> {
             String name = nameInput.getText().toString();
-            //TODO Fix CurrentColor
             Person p = new Person(name, fullPhotoUri.toString());
             System.out.println(p);
             mViewModel.insert(p);
@@ -65,9 +61,7 @@ public class AddEntryActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_OPEN && resultCode == RESULT_OK) {
             fullPhotoUri = data.getData();
-            // Do work with full size photo saved at fullPhotoUri
             iv.setImageURI(fullPhotoUri);
-
             getContentResolver().takePersistableUriPermission(fullPhotoUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
     }

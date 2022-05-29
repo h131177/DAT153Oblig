@@ -23,30 +23,16 @@ import no.hvl.dat153.Person;
 import no.hvl.dat153.R;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> implements RecyclerInterface {
-
     private final RecyclerInterface recyclerInterface;
-
     List<Person> personList;
     CustomAdapter adapter;
     MainViewModel mViewModel;
 
-    /**
-     * Initialize the dataset of the adapter
-     *
-     * @param personList containing the data to populate views to be used
-     * by RecyclerView
-     */
     public CustomAdapter(List<Person> personList, RecyclerInterface recyclerInterface){
         this.personList = personList;
         this.recyclerInterface = recyclerInterface;
-        
-
     }
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom viewholder)
-     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView imageView;
@@ -61,10 +47,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             buttonView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-
                     if (recyclerInterface != null){
                         int pos = getAdapterPosition();
-
                         if(pos != RecyclerView.NO_POSITION){
                             recyclerInterface.onItemLongClick(pos);
                         }
@@ -75,21 +59,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         }
     }
 
-
-    //Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType){
         //Create new view, which defines the UI of the list item
        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
        View view = inflater.inflate(R.layout.db_row_item, viewGroup, false);
-
         return new ViewHolder(view, recyclerInterface);
     }
 
     //Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position){
-
         //Get elements from you dataset at this position and replace the
         //the contents of the view with that element
         holder.textView.setText(personList.get(position).getName());
@@ -107,8 +87,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onItemLongClick(int position) {
         Person p = mViewModel.getAllPerson().getValue().get(position);
         mViewModel.delete(p);
-
     }
-
 }
 

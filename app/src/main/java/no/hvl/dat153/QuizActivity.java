@@ -39,29 +39,26 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private List<Person> person;
     private static int correctButton;
     private MainViewModel mViewModel;
-    private String buttonId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz3);
+        //tilbakeknapp på toppen av siden
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         score = 0;
         total = 0;
-
+        //henter info fra databasen
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.getAllPerson().observe(this, (List<Person> personList) -> {
             person = personList;
             names = getNames();
             setScreen();
-
         });
-
     }
 
     private void setScreen() {
         Random rand = new Random();
-
         //sender videre til ResultActivity hvis alle navnene er vist, kunne ha brukt fragment her
         if (person.size() == 0) {
             Intent result = new Intent(this, ResultActivity.class);
@@ -69,7 +66,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             result.putExtra("total", String.valueOf(total));
             startActivity(result);
         }else {
-
             //henter knappene og shuffler rekkefølgen
             Button radioButton1 = (Button) findViewById(R.id.radioButton1);
             Button radioButton2 = (Button) findViewById(R.id.radioButton2);
@@ -82,10 +78,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             name = person.get(randomIndex).getName();
             correctButton = buttons.get(0).getId();
             buttons.get(0).setText(name);
-//            System.out.println(" id tester.........." + correctButton);
-//            System.out.println(" R.id tester............ " +R.id.radioButton2 );
-
-
 
             //henter random navn fra navnlisten og sjekker at det ikke er samme som riktig person
             int r2 = rand.nextInt(names.size());
@@ -97,7 +89,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             String r2n = names.get(r2);
             buttons.get(1).setText(r2n);
             wrongButton1 = buttons.get(1).getId();
-            System.out.println(" wrongbutton id tester.........." + wrongButton1);
 
             int r3 = rand.nextInt(names.size());
             String name3 = names.get(r3);
@@ -141,7 +132,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 TextView textView = findViewById(R.id.score);
                 textView.setText(displayScore);
                 radioGroup.clearCheck();
-
                 //setter opp skjermen på nytt
                 setScreen();
             }
@@ -158,16 +148,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         return names;
     }
 
-
-
+    //For testing
     public static int getCorrectButton(){
         return correctButton;
     }
-
     public static int getWrongButton1(){
         return wrongButton1;
     }
-
     public static int getWrongButton2(){
         return wrongButton2;
     }

@@ -21,7 +21,6 @@ public class MainViewModel extends AndroidViewModel {
         personList = repository.getAllPersons();
         personListDesc = repository.getAllPersonsDesc();
         personListAsc = repository.getAllPersonsAsc();
-
     }
 
     public LiveData<List<Person>> getAllPerson(){
@@ -29,7 +28,6 @@ public class MainViewModel extends AndroidViewModel {
     }
     public LiveData<List<Person>> getAllPersonsDesc(){return personListDesc;};
     public LiveData<List<Person>> getAllPersonsAsc(){return personListAsc;};
-
     public void insert(Person person){
         repository.insertPerson(person);
     }
